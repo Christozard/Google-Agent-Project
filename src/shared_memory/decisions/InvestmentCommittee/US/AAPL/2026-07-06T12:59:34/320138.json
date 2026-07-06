@@ -1,0 +1,44 @@
+{
+  "key": "decisions.InvestmentCommittee.US.AAPL.2026-07-06T12:59:34.320138",
+  "value": {
+    "security": "US.AAPL",
+    "final_recommendation": "Strong Sell",
+    "confidence_score": 20,
+    "rationale": "Significant bearish factors noted.. Downside risks noted: Analyst 'Sell' recommendation - significant downside risk..",
+    "detailed_research": {
+      "code": "US.AAPL",
+      "name": "US.AAPL",
+      "last_price": 308.63,
+      "pe_ratio": 41.371,
+      "pb_ratio": 42.563,
+      "volume": 75400626,
+      "recommendation": "Sell",
+      "analysis_status": "Complete (Real Market Data)"
+    },
+    "risk_summary": {
+      "status": "risk_evaluated",
+      "security": "US.AAPL",
+      "proposed_investment_value": 308.63,
+      "concentration_impact": "Low",
+      "diversification_impact": "Neutral",
+      "downside_risks": [
+        "Analyst 'Sell' recommendation - significant downside risk."
+      ],
+      "current_portfolio_health": {
+        "diversification_score": 50.0,
+        "sector_allocation": {
+          "Tech": 40.0,
+          "Finance": 30.0,
+          "Healthcare": 20.0,
+          "Energy": 10.0
+        },
+        "concentration_risk": "Low",
+        "max_position_weight": 25.0,
+        "total_positions": 4,
+        "total_market_value": 100000.0,
+        "analysis_status": "Simulated (No positions)"
+      }
+    }
+  },
+  "timestamp": "2026-07-06T12:59:34.320323"
+}

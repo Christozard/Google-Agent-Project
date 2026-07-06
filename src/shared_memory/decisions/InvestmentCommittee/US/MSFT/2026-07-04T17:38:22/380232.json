@@ -1,0 +1,41 @@
+{
+  "key": "decisions.InvestmentCommittee.US.MSFT.2026-07-04T17:38:22.380232",
+  "value": {
+    "security": "US.MSFT",
+    "final_recommendation": "Strong Sell",
+    "confidence_score": 20,
+    "rationale": "Significant bearish factors noted.. Downside risks noted: Analyst 'Sell' recommendation - significant downside risk..",
+    "detailed_research": {
+      "code": "US.MSFT",
+      "name": "MSFT Stock",
+      "last_price": 320.0,
+      "pe_ratio": 35.0,
+      "pb_ratio": 18.5,
+      "volume": 75000000,
+      "recommendation": "Sell",
+      "analysis_status": "Complete (Real Market Data)"
+    },
+    "risk_summary": {
+      "status": "risk_evaluated",
+      "security": "US.MSFT",
+      "proposed_investment_value": 320.0,
+      "concentration_impact": "Low",
+      "diversification_impact": "Neutral",
+      "downside_risks": [
+        "Analyst 'Sell' recommendation - significant downside risk."
+      ],
+      "current_portfolio_health": {
+        "diversification_score": 20,
+        "sector_allocation": {
+          "Tech": 45.33
+        },
+        "concentration_risk": "High",
+        "max_position_weight": 36.0,
+        "total_positions": 2,
+        "total_market_value": 75000.0,
+        "analysis_status": "Complete (Real Data)"
+      }
+    }
+  },
+  "timestamp": "2026-07-04T17:38:22.380451"
+}

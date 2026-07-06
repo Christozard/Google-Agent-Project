@@ -1,0 +1,18 @@
+{
+  "key": "investment_committee.US.TSLA.risk",
+  "value": {
+    "status": "risk_evaluated",
+    "security": "US.TSLA",
+    "proposed_investment_value": 393.45,
+    "concentration_impact": "High",
+    "diversification_impact": "Potentially Negative (if undiversified sector)",
+    "downside_risks": [
+      "Analyst 'Sell' recommendation - significant downside risk.",
+      "Very high P/E ratio, indicating potential overvaluation."
+    ],
+    "current_portfolio_health": {
+      "error": "No positions found or total market value is zero."
+    }
+  },
+  "timestamp": "2026-07-04T18:17:26.502288"
+}

@@ -1,0 +1,21 @@
+{
+  "key": "decisions.GoalPlanner.2026-07-05T15:28:52.028806",
+  "value": {
+    "risk_profile": "Conservative",
+    "risk_score": 4,
+    "target_allocation": {
+      "Bonds": 70,
+      "Equities": 20,
+      "Cash": 10
+    },
+    "expected_return": "3-5%",
+    "objectives": [
+      "Establish a Conservative risk profile (score: 4) suitable for 30 years old with a 20 year horizon.",
+      "Target an annual return of 3-5% while managing risk.",
+      "Optimize asset allocation according to {'Bonds': 70, 'Equities': 20, 'Cash': 10} to achieve diversification.",
+      "Address specific goal: Growth."
+    ],
+    "decomposition_status": "Complete (Rule-based)"
+  },
+  "timestamp": "2026-07-05T15:28:52.028897"
+}

@@ -1,0 +1,24 @@
+{
+  "key": "investment_committee.research",
+  "value": [
+    {
+      "code": "US.AAPL",
+      "name": "US.AAPL",
+      "last_price": 308.63,
+      "open_price": 294.12,
+      "high_price": 309.42,
+      "low_price": 293.68,
+      "prev_close_price": 294.38,
+      "pe_ratio": 41.371,
+      "pb_ratio": 42.563,
+      "volume": 75400626,
+      "turnover": 23106283637.0,
+      "momentum": 4.93,
+      "ma_20": null,
+      "news": [],
+      "recommendation": "Sell",
+      "analysis_status": "Complete (Real Market Data)"
+    }
+  ],
+  "timestamp": "2026-07-06T15:37:08.356353"
+}

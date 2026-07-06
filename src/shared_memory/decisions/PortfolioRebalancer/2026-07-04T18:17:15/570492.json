@@ -1,0 +1,8 @@
+{
+  "key": "decisions.PortfolioRebalancer.2026-07-04T18:17:15.570492",
+  "value": {
+    "status": "error",
+    "reason": "Cannot rebalance an empty portfolio."
+  },
+  "timestamp": "2026-07-04T18:17:15.570737"
+}

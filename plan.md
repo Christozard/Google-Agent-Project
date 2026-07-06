@@ -1,41 +1,12 @@
 # Agentic Investment Copilot - Hackathon Implementation Plan
 
-This document outlines the step-by-step execution roadmap to build the Agentic Investment Copilot using the **Google Agent Development Kit (ADK)** and the **Moomoo API MCP**: https://github.com/Litash/moomoo-api-mcp.
-
----
-
-## Phase 1: Environment & SDK Setup
-
-Goal: Install `uv`, configure the Python virtual environment, install the Google ADK, and verify CLI/SDK availability.
-
-1. **Install uv Package Manager**:
-   ```bash
-   # For macOS / Linux
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
-2. **Initialize Python Environment**:
-   ```bash
-   uv venv
-   source .venv/bin/activate  # macOS/Linux
-   # or
-   .venv\Scripts\activate     # Windows
-   ```
-3. **Install Dependencies**:
-   Install core packages specified in `requirements.txt`:
-   ```bash
-   uv pip install -r requirements.txt
-   ```
-4. **Verify Installations**:
-   ```bash
-   uv --version
-   python3 -c "import google.adk; print(google.adk.__version__)"
-   ```
+This document outlines the step-by-step execution roadmap to build the Agentic Investment Copilot using thethe **Moomoo API MCP**: https://github.com/Litash/moomoo-api-mcp.
 
 ---
 
 ## Phase 2: Create Development Agents & Shared Project Memory
 
-Goal: Initialize and configure the specialized **Development Agents** that will autonomously coordinate, design, and write the project's source code, using a structured **Shared Project Memory** to maintain alignment. Make use of the google agents skills found here: https://github.com/addyosmani/agent-skills
+Goal: Initialize and configure the specialized **Development Agents** that will autonomously coordinate, design, and write the project's source code, using a structured **Shared Project Memory** to maintain alignment.
 
 *Note: These development agents are used to construct the project. The key runtime project agents and features (e.g., Investment Committee, Portfolio Analyzer) are separate from these development agents.*
 
@@ -80,7 +51,7 @@ All development agents reference and update these files in the workspace root to
 
 ## Phase 3: Core Project Features (Separate Runtime Agents)
 
-Goal: Implement the backend agent logic and tool integrations for the application's runtime features.
+Goal: Implement the backend agent logic and tool integrations for the application's runtime features. Utilize the created development agents for efficient context loading and task execution, otherwise default to the main model (yourself) in order to do so.
 
 ### Feature 1 — Goal Planner
 *   Infers risk tolerance from user inputs and generates investment objectives.
@@ -127,3 +98,4 @@ Goal: Build a polished web application layout.
 
 *   Verify all order execution pathways prompt for explicit human confirmation.
 *   Verify development agents successfully update Shared Project Memory files.
+

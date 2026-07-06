@@ -1,0 +1,111 @@
+{
+  "key": "decisions.MarketResearch.2026-07-04T18:17:26.315689",
+  "value": {
+    "research_results": [
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.MSFT",
+        "name": "US.MSFT",
+        "last_price": 390.49,
+        "pe_ratio": 28.628,
+        "pb_ratio": 7.0,
+        "volume": 42194409,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.GOOGL",
+        "name": "US.GOOGL",
+        "last_price": 359.91,
+        "pe_ratio": 33.294,
+        "pb_ratio": 9.108,
+        "volume": 25999346,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.TSLA",
+        "name": "US.TSLA",
+        "last_price": 393.45,
+        "pe_ratio": 364.305,
+        "pb_ratio": 17.567,
+        "volume": 73915762,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.JPM",
+        "name": "US.JPM",
+        "last_price": 334.47,
+        "pe_ratio": 16.706,
+        "pb_ratio": 2.461,
+        "volume": 8415407,
+        "recommendation": "Buy",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "ranked_recommendations": [
+      {
+        "code": "US.JPM",
+        "name": "US.JPM",
+        "last_price": 334.47,
+        "pe_ratio": 16.706,
+        "pb_ratio": 2.461,
+        "volume": 8415407,
+        "recommendation": "Buy",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.MSFT",
+        "name": "US.MSFT",
+        "last_price": 390.49,
+        "pe_ratio": 28.628,
+        "pb_ratio": 7.0,
+        "volume": 42194409,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.GOOGL",
+        "name": "US.GOOGL",
+        "last_price": 359.91,
+        "pe_ratio": 33.294,
+        "pb_ratio": 9.108,
+        "volume": 25999346,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.TSLA",
+        "name": "US.TSLA",
+        "last_price": 393.45,
+        "pe_ratio": 364.305,
+        "pb_ratio": 17.567,
+        "volume": 73915762,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "status": "complete"
+  },
+  "timestamp": "2026-07-04T18:17:26.315862"
+}

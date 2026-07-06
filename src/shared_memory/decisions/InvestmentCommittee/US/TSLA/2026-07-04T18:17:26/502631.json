@@ -1,0 +1,34 @@
+{
+  "key": "decisions.InvestmentCommittee.US.TSLA.2026-07-04T18:17:26.502631",
+  "value": {
+    "security": "US.TSLA",
+    "final_recommendation": "Strong Sell",
+    "confidence_score": 0,
+    "rationale": "Significant bearish factors noted.. High concentration risk identified, reducing enthusiasm.. Downside risks noted: Analyst 'Sell' recommendation - significant downside risk., Very high P/E ratio, indicating potential overvaluation..",
+    "detailed_research": {
+      "code": "US.TSLA",
+      "name": "US.TSLA",
+      "last_price": 393.45,
+      "pe_ratio": 364.305,
+      "pb_ratio": 17.567,
+      "volume": 73915762,
+      "recommendation": "Sell",
+      "analysis_status": "Complete (Real Market Data)"
+    },
+    "risk_summary": {
+      "status": "risk_evaluated",
+      "security": "US.TSLA",
+      "proposed_investment_value": 393.45,
+      "concentration_impact": "High",
+      "diversification_impact": "Potentially Negative (if undiversified sector)",
+      "downside_risks": [
+        "Analyst 'Sell' recommendation - significant downside risk.",
+        "Very high P/E ratio, indicating potential overvaluation."
+      ],
+      "current_portfolio_health": {
+        "error": "No positions found or total market value is zero."
+      }
+    }
+  },
+  "timestamp": "2026-07-04T18:17:26.502842"
+}

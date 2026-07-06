@@ -1,0 +1,25 @@
+# Moomoo API SDK (Required - real market data & trading)
+moomoo-api>=10.8.6808
+
+# Data Processing
+pandas>=2.0.0
+
+# Multi-Agent Orchestration & State Management
+pydantic>=2.0.0
+
+# API Server (Phase 4)
+fastapi>=0.100.0
+uvicorn>=0.22.0
+httpx>=0.24.0
+
+# Utilities
+python-dotenv>=1.0.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# UI Framework (Phase 4)
+streamlit>=1.35.0
+plotly>=5.22.0
+
+# Testing
+pytest>=7.0.0

@@ -1,0 +1,51 @@
+{
+  "key": "decisions.MarketResearch.2026-07-05T15:23:21.419227",
+  "value": {
+    "research_results": [
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.GOOGL",
+        "name": "US.GOOGL",
+        "last_price": 359.91,
+        "pe_ratio": 33.294,
+        "pb_ratio": 9.108,
+        "volume": 25999346,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "ranked_recommendations": [
+      {
+        "code": "US.GOOGL",
+        "name": "US.GOOGL",
+        "last_price": 359.91,
+        "pe_ratio": 33.294,
+        "pb_ratio": 9.108,
+        "volume": 25999346,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "status": "complete"
+  },
+  "timestamp": "2026-07-05T15:23:21.419314"
+}

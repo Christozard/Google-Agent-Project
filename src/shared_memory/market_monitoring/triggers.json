@@ -1,0 +1,15 @@
+{
+  "key": "market_monitoring.triggers",
+  "value": [
+    {
+      "code": "US.AAPL",
+      "target_price": 324.0615,
+      "trigger_type": "ABOVE_OR_EQUAL",
+      "action_if_triggered": {
+        "action": "review",
+        "reason": "US.AAPL rose 5% from sell recommendation"
+      }
+    }
+  ],
+  "timestamp": "2026-07-06T15:36:56.048771"
+}

@@ -1,0 +1,14 @@
+{
+  "key": "decisions.TradeExecution.2026-07-06T16:31:53.493347",
+  "value": {
+    "status": "success",
+    "order_id": "2891668",
+    "code": "US.AAPL",
+    "qty": 1,
+    "price": 2.0,
+    "trd_side": "BUY",
+    "order_type": "NORMAL",
+    "env": "SIMULATE"
+  },
+  "timestamp": "2026-07-06T16:31:53.493470"
+}

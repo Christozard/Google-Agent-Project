@@ -1,0 +1,83 @@
+{
+  "key": "decisions.MarketResearch.2026-07-06T15:36:56.086314",
+  "value": {
+    "research_results": [
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "open_price": 294.12,
+        "high_price": 309.42,
+        "low_price": 293.68,
+        "prev_close_price": 294.38,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "turnover": 23106283637.0,
+        "momentum": 4.93,
+        "ma_20": null,
+        "news": [],
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.GOOGL",
+        "name": "US.GOOGL",
+        "last_price": 359.91,
+        "open_price": 359.48,
+        "high_price": 364.205,
+        "low_price": 353.42,
+        "prev_close_price": 361.21,
+        "pe_ratio": 33.294,
+        "pb_ratio": 9.108,
+        "volume": 25999346,
+        "turnover": 9336885457.0,
+        "momentum": 0.12,
+        "ma_20": null,
+        "news": [],
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "ranked_recommendations": [
+      {
+        "code": "US.GOOGL",
+        "name": "US.GOOGL",
+        "last_price": 359.91,
+        "open_price": 359.48,
+        "high_price": 364.205,
+        "low_price": 353.42,
+        "prev_close_price": 361.21,
+        "pe_ratio": 33.294,
+        "pb_ratio": 9.108,
+        "volume": 25999346,
+        "turnover": 9336885457.0,
+        "momentum": 0.12,
+        "ma_20": null,
+        "news": [],
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "open_price": 294.12,
+        "high_price": 309.42,
+        "low_price": 293.68,
+        "prev_close_price": 294.38,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "turnover": 23106283637.0,
+        "momentum": 4.93,
+        "ma_20": null,
+        "news": [],
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "status": "complete"
+  },
+  "timestamp": "2026-07-06T15:36:56.086389"
+}

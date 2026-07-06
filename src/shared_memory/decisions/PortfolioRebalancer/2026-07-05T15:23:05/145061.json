@@ -1,0 +1,41 @@
+{
+  "key": "decisions.PortfolioRebalancer.2026-07-05T15:23:05.145061",
+  "value": {
+    "status": "analysis_complete",
+    "rebalancing_actions": [
+      {
+        "sector": "Tech",
+        "action": "BUY",
+        "amount": 10000.0,
+        "rationale": "Underweight in Tech by $10000.00. Need to increase exposure."
+      },
+      {
+        "sector": "Other",
+        "action": "BUY",
+        "amount": 20000.0,
+        "rationale": "Underweight in Other by $20000.00. Need to increase exposure."
+      }
+    ],
+    "current_health": {
+      "diversification_score": 50.0,
+      "sector_allocation": {
+        "Tech": 40.0,
+        "Finance": 30.0,
+        "Healthcare": 20.0,
+        "Energy": 10.0
+      },
+      "concentration_risk": "Low",
+      "max_position_weight": 25.0,
+      "total_positions": 4,
+      "total_market_value": 100000.0,
+      "analysis_status": "Simulated (No positions)"
+    },
+    "target_allocation": {
+      "Tech": 50,
+      "Finance": 30,
+      "Other": 20
+    },
+    "rebalancing_status": "Pending Execution"
+  },
+  "timestamp": "2026-07-05T15:23:05.145313"
+}

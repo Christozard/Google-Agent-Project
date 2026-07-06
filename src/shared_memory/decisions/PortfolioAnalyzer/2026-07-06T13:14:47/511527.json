@@ -1,0 +1,16 @@
+{
+  "key": "decisions.PortfolioAnalyzer.2026-07-06T13:14:47.511527",
+  "value": {
+    "diversification_score": 55,
+    "sector_allocation": {
+      "Diversified ETF": 0.0,
+      "Other": 0.0
+    },
+    "concentration_risk": "Low",
+    "max_position_weight": 0,
+    "total_positions": 7,
+    "total_market_value": 17336.3847,
+    "analysis_status": "Complete (Real Data)"
+  },
+  "timestamp": "2026-07-06T13:14:47.511622"
+}

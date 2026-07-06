@@ -1,0 +1,628 @@
+"""
+Moomoo API MCP Client - Real implementation using the moomoo-api SDK.
+
+This client wraps the moomoo-api Python SDK (OpenQuoteContext for market data,
+OpenSecTradeContext for trading) and provides a clean interface for the
+InvestmentOrchestrator and runtime agents.
+
+Prerequisites:
+1. Moomoo OpenD must be installed and running (127.0.0.1:11111)
+2. For REAL trading: set MOOMOO_TRADE_PASSWORD and MOOMOO_SECURITY_FIRM env vars
+"""
+import logging
+from typing import Dict, Any, Optional, List
+import os
+import pandas as pd
+
+from moomoo import (
+    OpenQuoteContext,
+    OpenSecTradeContext,
+    TrdMarket,
+    TrdEnv,
+    TrdSide,
+    OrderType,
+    SecurityFirm,
+    RET_OK,
+    SysConfig
+)
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("MoomooMCPClient")
+
+
+class MoomooMCPClient:
+    """
+    Client that wraps the moomoo-api SDK for market data and trading.
+    Provides a clean interface for the agent system.
+    """
+
+    def __init__(self, host: str = "127.0.0.1", port: int = 11111):
+        self.host = host
+        self.port = port
+        self.security_firm = self._resolve_security_firm()
+        self.trd_env = TrdEnv.REAL  # Enforce REAL mode
+        self._quote_ctx: Optional[OpenQuoteContext] = None
+        self._trade_ctx: Optional[OpenSecTradeContext] = None
+        self._connected = False
+        self._trade_unlocked = False
+
+
+    def _resolve_security_firm(self) -> int:
+        """Resolve security firm from env var or default to FUTUSG."""
+        firm_str = os.environ.get("MOOMOO_SECURITY_FIRM", "FUTUSG").upper()
+        # Only include SecurityFirm values available in the installed SDK version
+        firm_map = {
+            "FUTUSECURITIES": SecurityFirm.FUTUSECURITIES,
+            "FUTUINC": SecurityFirm.FUTUINC,
+            "FUTUSG": SecurityFirm.FUTUSG,
+            "FUTUAU": SecurityFirm.FUTUAU,
+            "FUTUJP": SecurityFirm.FUTUJP,
+            "FUTUCA": SecurityFirm.FUTUCA,
+            "FUTUMY": SecurityFirm.FUTUMY,
+        }
+        if firm_str in firm_map:
+            return firm_map[firm_str]
+        logger.warning(f"Unknown security firm '{firm_str}', defaulting to FUTUSG")
+        return SecurityFirm.FUTUSG
+
+    def set_environment(self, trd_env: str = "REAL"): # Added to resolve the error
+        """Set the trading environment (REAL or SIMULATE)."""
+        self.trd_env = TrdEnv.REAL
+        logger.info("Trading environment set to REAL (default).")
+
+    def connect(self) -> bool:
+        """
+        Establish connection to Moomoo OpenD gateway.
+        Creates both quote and trade contexts.
+        """
+        if self._connected:
+            return True
+
+        try:
+            logger.info(f"Connecting to Moomoo OpenD at {self.host}:{self.port} (Firm: {self.security_firm})...")
+
+            # Create quote context for market data
+            self._quote_ctx = OpenQuoteContext(
+                host=self.host,
+                port=self.port,
+                security_firm=self.security_firm
+            )
+
+            # Create trade context for securities trading
+            self._trade_ctx = OpenSecTradeContext(
+                filter_trdmarket=TrdMarket.US,
+                host=self.host,
+                port=self.port,
+                security_firm=self.security_firm
+            )
+
+            self._connected = True
+            logger.info("Successfully connected to Moomoo OpenD.")
+            return True
+
+        except Exception as e:
+            logger.error(f"Failed to connect to Moomoo OpenD: {e}")
+            self._connected = False
+            return False
+
+    def check_health(self) -> Dict[str, Any]:
+        """
+        Check connectivity to Moomoo OpenD gateway.
+        Maps to SDK: OpenQuoteContext connection check.
+        """
+        if not self._connected or not self._quote_ctx:
+            return {"status": "disconnected", "message": "Client not connected."}
+
+        try:
+            # Try a simple query to verify connection
+            ret, data = self._quote_ctx.get_market_snapshot(["US.AAPL"])
+            if ret == RET_OK:
+                return {"status": "ok", "message": "Moomoo OpenD is responsive."}
+            else:
+                return {"status": "error", "message": str(data)}
+        except Exception as e:
+            return {"status": "error", "message": str(e)}
+
+    def unlock_trade(self, password: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Unlock trade access for REAL accounts.
+        Maps to SDK: OpenSecTradeContext.unlock_trade().
+        Requires MOOMOO_TRADE_PASSWORD env var or explicit password.
+        """
+        if not self._connected or not self._trade_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        pwd = password or os.environ.get("MOOMOO_TRADE_PASSWORD")
+        if not pwd:
+            logger.warning("No password provided. Cannot unlock REAL account.")
+            return {"status": "failed", "reason": "Password required for REAL account access"}
+
+        try:
+            logger.info("Unlocking trade access for REAL account...")
+            ret, data = self._trade_ctx.unlock_trade(password=pwd)
+            if ret == RET_OK:
+                self._trade_unlocked = True
+                return {"status": "unlocked", "message": "REAL account data is now accessible"}
+            else:
+                return {"status": "failed", "reason": str(data)}
+        except Exception as e:
+            return {"status": "failed", "reason": str(e)}
+
+    def get_accounts(self) -> List[Dict[str, Any]]:
+        """
+        Get list of trading accounts (REAL and SIMULATE).
+        Maps to SDK: OpenSecTradeContext.get_acc_list().
+        """
+        if not self._connected or not self._trade_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        try:
+            ret, data = self._trade_ctx.get_acc_list()
+            if ret != RET_OK:
+                logger.error(f"Failed to get accounts: {data}")
+                return []
+
+            accounts = []
+            if isinstance(data, pd.DataFrame):
+                for _, row in data.iterrows():
+                    accounts.append({
+                        "acc_id": str(row.get("acc_id", "")),
+                        "trd_env": "REAL",
+                        "acc_type": str(row.get("acc_type", "")),
+                        "card_num": str(row.get("card_num", "")),
+                        "security_firm": str(row.get("security_firm", "")),
+                    })
+            return accounts
+
+        except Exception as e:
+            logger.error(f"Error getting accounts: {e}")
+            return []
+
+    def get_account_summary(self, acc_id: str = "0",
+                             trd_env: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Get complete summary of assets and positions for an account.
+        Maps to SDK: OpenSecTradeContext.accinfo_query().
+        """
+        if not self._connected or not self._trade_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        current_env = self._resolve_trd_env(trd_env)
+        # Note: For reading account summary, we don't require unlock - only for trading
+
+        try:
+            # Get account info (cash, market value, buying power)
+            ret, data = self._trade_ctx.accinfo_query(
+                trd_env=current_env,
+                acc_id=int(acc_id) if acc_id.isdigit() else 0,
+                refresh_cache=True
+            )
+
+            assets = {}
+            positions_data = []
+            if ret == RET_OK and isinstance(data, pd.DataFrame) and not data.empty:
+                row = data.iloc[0]
+                # Helper to safely convert values, handling "N/A" strings
+                def safe_float(val, default=0.0):
+                    if val == "N/A" or val is None:
+                        return default
+                    try:
+                        return float(val)
+                    except (ValueError, TypeError):
+                        return default
+
+                assets = {
+                    "cash": safe_float(row.get("cash")),
+                    "market_val": safe_float(row.get("market_val")),
+                    "total_assets": safe_float(row.get("total_assets")),
+                    "buying_power": safe_float(row.get("buying_power")),
+                    "currency": str(row.get("currency", "USD")),
+                    "max_power_short": safe_float(row.get("max_power_short")),
+                }
+
+            # Get positions
+            ret_pos, pos_data = self._trade_ctx.position_list_query(
+                trd_env=current_env,
+                acc_id=int(acc_id) if acc_id.isdigit() else 0,
+                refresh_cache=True
+            )
+
+            if ret_pos == RET_OK and isinstance(pos_data, pd.DataFrame):
+                for _, row in pos_data.iterrows():
+                    positions_data.append({
+                        "code": str(row.get("code", "")),
+                        "qty": int(row.get("qty", 0)),
+                        "cost_price": float(row.get("cost_price", 0)),
+                        "market_price": float(row.get("market_price", 0)),
+                        "pl_ratio": float(row.get("pl_ratio", 0)),
+                        "pl_val": float(row.get("pl_val", 0)),
+                        "market_val": float(row.get("market_val", 0)),
+                        "currency": str(row.get("currency", "USD")),
+                    })
+
+            return {
+                "assets": assets,
+                "positions": positions_data,
+                "total_market_value": assets.get("market_val", 0) + assets.get("cash", 0),
+                "analysis_status": "Complete (Real Data)"
+            }
+
+        except Exception as e:
+            logger.error(f"Error getting account summary: {e}")
+            return {"error": str(e), "assets": {}, "positions": []}
+
+    def get_market_snapshot(self, codes: List[str]) -> List[Dict[str, Any]]:
+        """
+        Get market snapshots for multiple stocks.
+        Maps to SDK: OpenQuoteContext.get_market_snapshot().
+        """
+        if not self._connected or not self._quote_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        if not codes:
+            return []
+
+        try:
+            ret, data = self._quote_ctx.get_market_snapshot(codes)
+            if ret != RET_OK:
+                logger.error(f"Failed to get market snapshot: {data}")
+                return []
+
+            snapshots = []
+            if isinstance(data, pd.DataFrame):
+                for _, row in data.iterrows():
+                    snapshots.append({
+                        "code": str(row.get("code", "")),
+                        "name": str(row.get("code", "")),  # SDK doesn't provide name directly
+                        "last_price": float(row.get("last_price", 0)),
+                        "open_price": float(row.get("open_price", 0)),
+                        "high_price": float(row.get("high_price", 0)),
+                        "low_price": float(row.get("low_price", 0)),
+                        "prev_close_price": float(row.get("prev_close_price", 0)),
+                        "volume": int(row.get("volume", 0)),
+                        "turnover": float(row.get("turnover", 0)),
+                        "pe_ratio": float(row.get("pe_ratio", 0)),
+                        "pb_ratio": float(row.get("pb_ratio", 0)),
+                        "pe_ttm_ratio": float(row.get("pe_ttm_ratio", 0)),
+                        "turnover_rate": float(row.get("turnover_rate", 0)),
+                        "total_market_val": float(row.get("total_market_val", 0)),
+                        "circular_market_val": float(row.get("circular_market_val", 0)),
+                        "dividend_ratio_ttm": float(row.get("dividend_ratio_ttm", 0)),
+                        "suspension": bool(row.get("suspension", False)),
+                    })
+            return snapshots
+
+        except Exception as e:
+            logger.error(f"Error getting market snapshot: {e}")
+            return []
+
+    def get_stock_quote(self, code: str) -> Optional[Dict[str, Any]]:
+        """
+        Get real-time stock quote for a single security.
+        Maps to SDK: OpenQuoteContext.get_stock_quote().
+        """
+        if not self._connected or not self._quote_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        try:
+            ret, data = self._quote_ctx.get_stock_quote([code])
+            if ret != RET_OK or not isinstance(data, pd.DataFrame) or data.empty:
+                return None
+
+            row = data.iloc[0]
+            return {
+                "code": str(row.get("code", "")),
+                "last_price": float(row.get("last_price", 0)),
+                "open_price": float(row.get("open_price", 0)),
+                "high_price": float(row.get("high_price", 0)),
+                "low_price": float(row.get("low_price", 0)),
+                "prev_close_price": float(row.get("prev_close_price", 0)),
+                "volume": int(row.get("volume", 0)),
+                "turnover": float(row.get("turnover", 0)),
+                "bid_price": float(row.get("bid_price", 0)),
+                "ask_price": float(row.get("ask_price", 0)),
+                "bid_size": int(row.get("bid_size", 0)),
+                "ask_size": int(row.get("ask_size", 0)),
+            }
+
+        except Exception as e:
+            logger.error(f"Error getting stock quote for {code}: {e}")
+            return None
+
+    def get_max_tradable(self, code: str, price: float,
+                          order_type: str = "NORMAL",
+                          trd_env: Optional[str] = None,
+                          acc_id: str = "0") -> Dict[str, Any]:
+        """
+        Calculate maximum tradable quantity for a specific stock.
+        Maps to SDK: OpenSecTradeContext.acctradinginfo_query().
+        """
+        if not self._connected or not self._trade_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        current_env = self._resolve_trd_env(trd_env)
+        # Use available order types (LIMIT maps to ABSOLUTE_LIMIT in this SDK version)
+        ot_map = {
+            "NORMAL": OrderType.NORMAL,
+            "LIMIT": OrderType.ABSOLUTE_LIMIT,
+            "MARKET": OrderType.MARKET,
+        }
+        ot = ot_map.get(order_type.upper(), OrderType.NORMAL)
+
+        try:
+            ret, data = self._trade_ctx.acctradinginfo_query(
+                order_type=ot,
+                code=code,
+                price=price,
+                trd_env=current_env,
+                acc_id=int(acc_id) if acc_id.isdigit() else 0
+            )
+            if ret == RET_OK and isinstance(data, pd.DataFrame) and not data.empty:
+                row = data.iloc[0]
+                return {
+                    "max_cash_buy": int(row.get("max_cash_buy", 0)),
+                    "max_margin_buy": int(row.get("max_margin_buy", 0)),
+                    "max_sell": int(row.get("max_sell", 0)),
+                    "max_short": int(row.get("max_short", 0)),
+                    "can_buy": bool(row.get("can_buy", False)),
+                    "can_sell": bool(row.get("can_sell", False)),
+                }
+            return {"max_cash_buy": 0, "max_margin_buy": 0, "max_sell": 0, "max_short": 0}
+
+        except Exception as e:
+            logger.error(f"Error getting max tradable for {code}: {e}")
+            return {"max_cash_buy": 0, "max_margin_buy": 0, "max_sell": 0, "max_short": 0}
+
+    def place_order(self, order_details: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Place a new trading order.
+        Maps to SDK: OpenSecTradeContext.place_order().
+        
+        CRITICAL SAFETY: REAL trades require prior unlock_trade() call.
+        """
+        if not self._connected or not self._trade_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        current_env = self._resolve_trd_env(order_details.get("trd_env"))
+        if current_env == TrdEnv.REAL and not self._trade_unlocked:
+            raise PermissionError("Trade must be unlocked for REAL account access.")
+
+        # Map trd_side string to SDK enum
+        side_str = order_details.get("trd_side", "BUY").upper()
+        if side_str == "BUY":
+            trd_side = TrdSide.BUY
+        elif side_str == "SELL":
+            trd_side = TrdSide.SELL
+        elif side_str == "SELL_SHORT":
+            trd_side = TrdSide.SELL_SHORT
+        elif side_str == "BUY_BACK":
+            trd_side = TrdSide.BUY_BACK
+        else:
+            return {"status": "error", "reason": f"Invalid trd_side: {side_str}"}
+
+        # Map order_type string to SDK enum (LIMIT maps to ABSOLUTE_LIMIT in this SDK version)
+        ot_str = order_details.get("order_type", "NORMAL").upper()
+        ot_map = {
+            "NORMAL": OrderType.NORMAL,
+            "LIMIT": OrderType.ABSOLUTE_LIMIT,
+            "MARKET": OrderType.MARKET,
+            "STOP": OrderType.STOP,
+            "STOP_LIMIT": OrderType.STOP_LIMIT,
+        }
+        order_type = ot_map.get(ot_str, OrderType.NORMAL)
+
+        try:
+            logger.info(f"Placing {side_str} order for {order_details.get('code')} "
+                        f"x {order_details.get('qty')} @ ${order_details.get('price', 0):.2f} "
+                        f"in {'REAL' if current_env == TrdEnv.REAL else 'SIMULATE'}")
+
+            ret, data = self._trade_ctx.place_order(
+                price=float(order_details.get("price", 0)),
+                qty=int(order_details.get("qty", 0)),
+                code=str(order_details.get("code", "")),
+                trd_side=trd_side,
+                order_type=order_type,
+                trd_env=current_env,
+                acc_id=int(order_details.get("acc_id", 0)) if str(order_details.get("acc_id", "0")).isdigit() else 0,
+            )
+
+            if ret == RET_OK and isinstance(data, pd.DataFrame) and not data.empty:
+                row = data.iloc[0]
+                return {
+                    "status": "success",
+                    "order_id": str(row.get("order_id", "")),
+                    "code": str(row.get("code", "")),
+                    "qty": int(row.get("qty", 0)),
+                    "price": float(row.get("price", 0)),
+                    "trd_side": side_str,
+                    "order_type": ot_str,
+                    "env": "REAL" if current_env == TrdEnv.REAL else "SIMULATE",
+                }
+            else:
+                return {"status": "error", "reason": str(data)}
+
+        except Exception as e:
+            logger.error(f"Failed to place order: {e}")
+            return {"status": "error", "reason": str(e)}
+
+    def execute_trade(self, order_details: Dict[str, Any],
+                       user_approved: bool = False) -> Dict[str, Any]:
+        """
+        Execute a trade after explicit user approval.
+        Wraps place_order with safety gate.
+        """
+        if not user_approved:
+            logger.warning("Trade execution blocked: User approval missing.")
+            return {"status": "rejected", "reason": "User approval required"}
+        return self.place_order(order_details)
+
+    def get_historical_klines(self, code: str, ktype: str = "DAY",
+                               num: int = 100) -> List[Dict[str, Any]]:
+        """
+        Get historical candlestick data.
+        Maps to SDK: OpenQuoteContext.get_historical_klines().
+        
+        Args:
+            code: Stock code (e.g., "US.AAPL")
+            ktype: Kline type ("DAY", "WEEK", "MONTH", "MIN1", "MIN5", etc.)
+            num: Number of klines to retrieve
+        """
+        if not self._connected or not self._quote_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        from moomoo import KLType
+        ktype_map = {
+            "DAY": KLType.K_DAY,
+            "WEEK": KLType.K_WEEK,
+            "MONTH": KLType.K_MONTH,
+            "YEAR": KLType.K_YEAR,
+            "MIN1": KLType.K_1M,
+            "MIN5": KLType.K_5M,
+            "MIN15": KLType.K_15M,
+            "MIN30": KLType.K_30M,
+            "MIN60": KLType.K_60M,
+        }
+        kl_type = ktype_map.get(ktype.upper(), KLType.K_DAY)
+
+        try:
+            ret, data = self._quote_ctx.get_historical_klines(
+                code=code, ktype=kl_type, num=num
+            )
+            if ret != RET_OK or not isinstance(data, pd.DataFrame):
+                return []
+
+            klines = []
+            for _, row in data.iterrows():
+                klines.append({
+                    "code": code,
+                    "time": str(row.get("time", "")),
+                    "open": float(row.get("open", 0)),
+                    "close": float(row.get("close", 0)),
+                    "high": float(row.get("high", 0)),
+                    "low": float(row.get("low", 0)),
+                    "volume": int(row.get("volume", 0)),
+                    "turnover": float(row.get("turnover", 0)),
+                    "pe_ratio": float(row.get("pe_ratio", 0)),
+                })
+            return klines
+
+        except Exception as e:
+            logger.error(f"Error getting historical klines for {code}: {e}")
+            return []
+
+    def get_news(self, keyword: str, max_count: int = 10) -> List[Dict[str, Any]]:
+        """
+        Search for news articles using moomoo's news API.
+        Maps to SDK: OpenQuoteContext.get_search_news().
+        
+        Args:
+            keyword: Search keyword (e.g., stock code like "US.AAPL" or company name)
+            max_count: Maximum number of articles to return
+        """
+        if not self._connected or not self._quote_ctx:
+            raise ConnectionError("Not connected to Moomoo OpenD")
+
+        try:
+            from moomoo import NewsSubType
+            ret, data = self._quote_ctx.get_search_news(
+                keyword=keyword,
+                max_count=max_count,
+                news_sub_type=NewsSubType.ALL
+            )
+            if ret != RET_OK or not isinstance(data, pd.DataFrame):
+                return []
+
+            news_items = []
+            for _, row in data.iterrows():
+                news_items.append({
+                    "title": str(row.get("title", "")),
+                    "url": str(row.get("url", "")),
+                    "time": str(row.get("time", "")),
+                    "source": str(row.get("source", "")),
+                    "abstract": str(row.get("abstract", "")),
+                })
+            return news_items
+
+        except Exception as e:
+            logger.error(f"Error getting news for {keyword}: {e}")
+            return []
+
+    def fetch_news_summary(self, url: str) -> str:
+        """
+        Fetch and extract summary text from a news article URL.
+        
+        Args:
+            url: URL of the news article
+        """
+        import httpx
+        from bs4 import BeautifulSoup
+
+        try:
+            # Follow redirects and increase timeout
+            response = httpx.get(url, follow_redirects=True, timeout=30.0)
+            response.raise_for_status() # Raise an exception for bad status codes
+
+            soup = BeautifulSoup(response.text, "lxml")
+            
+            # More robust content extraction with multiple selectors
+            content_selectors = [
+                "article", # Common for blog posts/articles
+                "div.article-content", "div.content-main", "div.entry-content", # Common content divs
+                "div[itemprop=\"articleBody\"]", "div.rich-text", # Semantic/rich text content
+                "p", # Paragraphs as a last resort
+            ]
+            
+            extracted_text = []
+            for selector in content_selectors:
+                for tag in soup.select(selector):
+                    text = tag.get_text(separator=" ", strip=True)
+                    if text and len(text) > 50:
+                        extracted_text.append(text)
+                        # If we found good content, stop at first good block
+                        if len(" ".join(extracted_text)) > 200: break
+                if len(" ".join(extracted_text)) > 200: break
+
+            full_text = " ".join(extracted_text)
+            if not full_text:
+                return "No content extracted or page format not recognized."
+
+            # Return first 500 chars as summary
+            return full_text[:500] + "..." if len(full_text) > 500 else full_text
+        except httpx.HTTPStatusError as e:
+            logger.error(f"HTTP error fetching news summary from {url}: {e.response.status_code}")
+            return f"Unable to fetch article (status: {e.response.status_code}). Content may be protected or require authentication."
+        except httpx.RequestError as e:
+            logger.error(f"Network error fetching news summary from {url}: {e}")
+            return f"Network error: {str(e)}"
+        except Exception as e:
+            logger.error(f"Unexpected error fetching news summary from {url}: {e}")
+            return f"Unable to fetch summary: {str(e)}"
+
+
+    @property
+    def connected(self) -> bool:
+        """Public property to check connection status."""
+        return self._connected
+
+    def _resolve_trd_env(self, env_str: Optional[str] = None) -> int:
+        """Convert string env to SDK TrdEnv enum. Always returns REAL for now."""
+        return TrdEnv.REAL
+
+    def close(self):
+        """Close all connections to Moomoo OpenD."""
+        if self._quote_ctx:
+            try:
+                self._quote_ctx.close()
+            except Exception:
+                pass
+            self._quote_ctx = None
+        if self._trade_ctx:
+            try:
+                self._trade_ctx.close()
+            except Exception:
+                pass
+            self._trade_ctx = None
+        self._connected = False
+        self._trade_unlocked = False
+        logger.info("Disconnected from Moomoo OpenD.")

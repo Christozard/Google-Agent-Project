@@ -1,0 +1,31 @@
+{
+  "key": "decisions.InvestmentCommittee.US.JPM.2026-07-04T18:17:26.601388",
+  "value": {
+    "security": "US.JPM",
+    "final_recommendation": "Hold",
+    "confidence_score": 45,
+    "rationale": "Strong bullish sentiment identified.. High concentration risk identified, reducing enthusiasm.",
+    "detailed_research": {
+      "code": "US.JPM",
+      "name": "US.JPM",
+      "last_price": 334.47,
+      "pe_ratio": 16.706,
+      "pb_ratio": 2.461,
+      "volume": 8415407,
+      "recommendation": "Buy",
+      "analysis_status": "Complete (Real Market Data)"
+    },
+    "risk_summary": {
+      "status": "risk_evaluated",
+      "security": "US.JPM",
+      "proposed_investment_value": 334.47,
+      "concentration_impact": "High",
+      "diversification_impact": "Potentially Negative (if undiversified sector)",
+      "downside_risks": [],
+      "current_portfolio_health": {
+        "error": "No positions found or total market value is zero."
+      }
+    }
+  },
+  "timestamp": "2026-07-04T18:17:26.601755"
+}

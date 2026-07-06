@@ -1,0 +1,31 @@
+{
+  "key": "decisions.MarketResearch.2026-07-06T12:44:16.774067",
+  "value": {
+    "research_results": [
+      {
+        "code": "US.TSLA",
+        "name": "US.TSLA",
+        "last_price": 393.45,
+        "pe_ratio": 364.305,
+        "pb_ratio": 17.567,
+        "volume": 73915762,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "ranked_recommendations": [
+      {
+        "code": "US.TSLA",
+        "name": "US.TSLA",
+        "last_price": 393.45,
+        "pe_ratio": 364.305,
+        "pb_ratio": 17.567,
+        "volume": 73915762,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "status": "complete"
+  },
+  "timestamp": "2026-07-06T12:44:16.774188"
+}

@@ -1,0 +1,12 @@
+{
+  "key": "decisions.InvestmentOrchestrator.2026-07-05T15:23:05.146371",
+  "value": {
+    "risk_profile": "Conservative",
+    "portfolio_health_score": 50.0,
+    "securities_analyzed": 2,
+    "rebalancing_actions": 2,
+    "monitoring_triggers_set": 1,
+    "execution_status": "skipped"
+  },
+  "timestamp": "2026-07-05T15:23:05.146558"
+}

@@ -1,0 +1,31 @@
+{
+  "key": "decisions.InvestmentCommittee.US.MSFT.2026-07-04T18:17:26.412001",
+  "value": {
+    "security": "US.MSFT",
+    "final_recommendation": "Strong Sell",
+    "confidence_score": 25,
+    "rationale": "High concentration risk identified, reducing enthusiasm.",
+    "detailed_research": {
+      "code": "US.MSFT",
+      "name": "US.MSFT",
+      "last_price": 390.49,
+      "pe_ratio": 28.628,
+      "pb_ratio": 7.0,
+      "volume": 42194409,
+      "recommendation": "Hold",
+      "analysis_status": "Complete (Real Market Data)"
+    },
+    "risk_summary": {
+      "status": "risk_evaluated",
+      "security": "US.MSFT",
+      "proposed_investment_value": 390.49,
+      "concentration_impact": "High",
+      "diversification_impact": "Potentially Negative (if undiversified sector)",
+      "downside_risks": [],
+      "current_portfolio_health": {
+        "error": "No positions found or total market value is zero."
+      }
+    }
+  },
+  "timestamp": "2026-07-04T18:17:26.412106"
+}

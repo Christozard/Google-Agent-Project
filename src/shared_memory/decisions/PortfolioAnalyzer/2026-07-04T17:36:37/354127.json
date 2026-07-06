@@ -1,0 +1,15 @@
+{
+  "key": "decisions.PortfolioAnalyzer.2026-07-04T17:36:37.354127",
+  "value": {
+    "diversification_score": 20,
+    "sector_allocation": {
+      "Tech": 45.33
+    },
+    "concentration_risk": "High",
+    "max_position_weight": 36.0,
+    "total_positions": 2,
+    "total_market_value": 75000.0,
+    "analysis_status": "Complete (Real Data)"
+  },
+  "timestamp": "2026-07-04T17:36:37.354257"
+}

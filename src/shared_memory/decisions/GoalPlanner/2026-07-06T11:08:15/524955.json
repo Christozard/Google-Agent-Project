@@ -1,0 +1,21 @@
+{
+  "key": "decisions.GoalPlanner.2026-07-06T11:08:15.524955",
+  "value": {
+    "risk_profile": "Aggressive",
+    "risk_score": 10,
+    "target_allocation": {
+      "Bonds": 10,
+      "Equities": 80,
+      "Cash": 10
+    },
+    "expected_return": "10%+",
+    "objectives": [
+      "Establish a Aggressive risk profile (score: 10) suitable for 30 years old with a 198 year horizon.",
+      "Target an annual return of 10%+ while managing risk.",
+      "Optimize asset allocation according to {'Bonds': 10, 'Equities': 80, 'Cash': 10} to achieve diversification.",
+      "Address specific goal: general wealth growth."
+    ],
+    "decomposition_status": "Complete (Rule-based)"
+  },
+  "timestamp": "2026-07-06T11:08:15.525048"
+}

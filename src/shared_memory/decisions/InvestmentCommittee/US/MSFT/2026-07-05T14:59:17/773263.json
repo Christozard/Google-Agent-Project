@@ -1,0 +1,42 @@
+{
+  "key": "decisions.InvestmentCommittee.US.MSFT.2026-07-05T14:59:17.773263",
+  "value": {
+    "security": "US.MSFT",
+    "final_recommendation": "Hold",
+    "confidence_score": 50,
+    "rationale": "Based on available data.",
+    "detailed_research": {
+      "code": "US.MSFT",
+      "name": "US.MSFT",
+      "last_price": 390.49,
+      "pe_ratio": 28.628,
+      "pb_ratio": 7.0,
+      "volume": 42194409,
+      "recommendation": "Hold",
+      "analysis_status": "Complete (Real Market Data)"
+    },
+    "risk_summary": {
+      "status": "risk_evaluated",
+      "security": "US.MSFT",
+      "proposed_investment_value": 390.49,
+      "concentration_impact": "Low",
+      "diversification_impact": "Neutral",
+      "downside_risks": [],
+      "current_portfolio_health": {
+        "diversification_score": 50.0,
+        "sector_allocation": {
+          "Tech": 40.0,
+          "Finance": 30.0,
+          "Healthcare": 20.0,
+          "Energy": 10.0
+        },
+        "concentration_risk": "Low",
+        "max_position_weight": 25.0,
+        "total_positions": 4,
+        "total_market_value": 100000.0,
+        "analysis_status": "Simulated (No positions)"
+      }
+    }
+  },
+  "timestamp": "2026-07-05T14:59:17.773417"
+}

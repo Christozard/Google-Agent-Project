@@ -1,0 +1,8 @@
+{
+  "key": "decisions.TradeExecution.2026-07-04T18:17:15.572003",
+  "value": {
+    "status": "rejected",
+    "reason": "Insufficient buying power"
+  },
+  "timestamp": "2026-07-04T18:17:15.572087"
+}

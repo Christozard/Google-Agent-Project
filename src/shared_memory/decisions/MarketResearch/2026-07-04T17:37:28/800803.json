@@ -1,0 +1,51 @@
+{
+  "key": "decisions.MarketResearch.2026-07-04T17:37:28.800803",
+  "value": {
+    "research_results": [
+      {
+        "code": "US.AAPL",
+        "name": "AAPL Stock",
+        "last_price": 182.5,
+        "pe_ratio": 28.5,
+        "pb_ratio": 15.2,
+        "volume": 75000000,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.MSFT",
+        "name": "MSFT Stock",
+        "last_price": 320.0,
+        "pe_ratio": 35.0,
+        "pb_ratio": 18.5,
+        "volume": 75000000,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "ranked_recommendations": [
+      {
+        "code": "US.AAPL",
+        "name": "AAPL Stock",
+        "last_price": 182.5,
+        "pe_ratio": 28.5,
+        "pb_ratio": 15.2,
+        "volume": 75000000,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.MSFT",
+        "name": "MSFT Stock",
+        "last_price": 320.0,
+        "pe_ratio": 35.0,
+        "pb_ratio": 18.5,
+        "volume": 75000000,
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "status": "complete"
+  },
+  "timestamp": "2026-07-04T17:37:28.800915"
+}

@@ -1,0 +1,247 @@
+{
+  "key": "decisions.MarketResearch.2026-07-06T16:00:02.321666",
+  "value": {
+    "research_results": [
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "open_price": 294.12,
+        "high_price": 309.42,
+        "low_price": 293.68,
+        "prev_close_price": 294.38,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "turnover": 23106283637.0,
+        "momentum": 4.93,
+        "ma_20": null,
+        "news": [
+          {
+            "title": "Ming-Chi Kuo, dubbed 'the analyst who understands Apple best,' stated that the foldable iPhone may be 'announced jointly but delayed in launch, with tight supply before year-end.'",
+            "url": "https://www.moomoo.com/news/post/72484141?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "wallstreetcn",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Apple's Hardware Price Hikes, Elon Musk's SpaceX Denial, Epic Games Vs. Apple and More: This Week In Appleverse",
+            "url": "https://www.moomoo.com/news/post/72479217?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Apple's AI features have failed to spark a wave of device upgrades, with a UBS Group survey showing continued declines in user willingness to upgrade.",
+            "url": "https://www.moomoo.com/news/post/72473589?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "wallstreetcn",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Market Analysis: Apple And Competitors In Technology Hardware, Storage & Peripherals Industry",
+            "url": "https://www.moomoo.com/news/post/72455807?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Apple Shares Are Trading Higher Following a Report Suggesting That the Company Is Planning an iPhone Launch for the Second Half of the Year and the First Half of 2027, With at Least Five New Models and a Larger Volume of Folding Handsets Than...",
+            "url": "https://www.moomoo.com/news/post/72411848?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          }
+        ],
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.MSFT",
+        "name": "US.MSFT",
+        "last_price": 390.49,
+        "open_price": 384.48,
+        "high_price": 392.2,
+        "low_price": 383.7,
+        "prev_close_price": 384.28,
+        "pe_ratio": 28.628,
+        "pb_ratio": 7.0,
+        "volume": 42194409,
+        "turnover": 16432802775.0,
+        "momentum": 1.56,
+        "ma_20": null,
+        "news": [
+          {
+            "title": "Data Center Leases Top $850 Billion as Meta, Microsoft, Oracle Lead Record AI Infrastructure Spending",
+            "url": "https://www.moomoo.com/news/post/72477544?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Microsoft Eyes Another Wave of Layoffs That Could Hit 5,000 Workers Next Week",
+            "url": "https://www.foxbusiness.com/economy/microsoft-eyes-another-wave-layoffs-hit-5000-workers-next-week?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Fox Business",
+            "abstract": "",
+            "summary": "MicrosoftPublishedJuly 2, 2026 6:34pm EDTMicrosoft eyes another wave of layoffs that could hit 5,000 workers next weekMicrosoft shares slumped about 19% over the past monthFacebookTwitterThreadsPrintEmailAdd Fox Business on GoogleByBonny ChuFOXBusinessclosevideoFOX Business Flash top headlines for July 2Check out what's clicking on FoxBusiness.com.Microsoft is expected to lay off up to 2.5% of its workforce as early as next week.The cuts, which could affect 5,000 employees, may impact sales, con..."
+          },
+          {
+            "title": "Microsoft Options Spot-On: On July 2nd, 768.97K Contracts Were Traded, With 4.61 Million Open Interest",
+            "url": "https://www.moomoo.com/news/post/72417130?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Moomoo News",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Comparing Microsoft With Industry Competitors In Software Industry",
+            "url": "https://www.moomoo.com/news/post/72455806?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Microsoft is investing $2.5 billion and deploying 6,000 experts to bet on an enterprise AI model centered on 'frontline deployment plus continuous optimization.'",
+            "url": "https://www.moomoo.com/news/post/72455982?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "wallstreetcn",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          }
+        ],
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "ranked_recommendations": [
+      {
+        "code": "US.MSFT",
+        "name": "US.MSFT",
+        "last_price": 390.49,
+        "open_price": 384.48,
+        "high_price": 392.2,
+        "low_price": 383.7,
+        "prev_close_price": 384.28,
+        "pe_ratio": 28.628,
+        "pb_ratio": 7.0,
+        "volume": 42194409,
+        "turnover": 16432802775.0,
+        "momentum": 1.56,
+        "ma_20": null,
+        "news": [
+          {
+            "title": "Data Center Leases Top $850 Billion as Meta, Microsoft, Oracle Lead Record AI Infrastructure Spending",
+            "url": "https://www.moomoo.com/news/post/72477544?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Microsoft Eyes Another Wave of Layoffs That Could Hit 5,000 Workers Next Week",
+            "url": "https://www.foxbusiness.com/economy/microsoft-eyes-another-wave-layoffs-hit-5000-workers-next-week?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Fox Business",
+            "abstract": "",
+            "summary": "MicrosoftPublishedJuly 2, 2026 6:34pm EDTMicrosoft eyes another wave of layoffs that could hit 5,000 workers next weekMicrosoft shares slumped about 19% over the past monthFacebookTwitterThreadsPrintEmailAdd Fox Business on GoogleByBonny ChuFOXBusinessclosevideoFOX Business Flash top headlines for July 2Check out what's clicking on FoxBusiness.com.Microsoft is expected to lay off up to 2.5% of its workforce as early as next week.The cuts, which could affect 5,000 employees, may impact sales, con..."
+          },
+          {
+            "title": "Microsoft Options Spot-On: On July 2nd, 768.97K Contracts Were Traded, With 4.61 Million Open Interest",
+            "url": "https://www.moomoo.com/news/post/72417130?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Moomoo News",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Comparing Microsoft With Industry Competitors In Software Industry",
+            "url": "https://www.moomoo.com/news/post/72455806?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Microsoft is investing $2.5 billion and deploying 6,000 experts to bet on an enterprise AI model centered on 'frontline deployment plus continuous optimization.'",
+            "url": "https://www.moomoo.com/news/post/72455982?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "wallstreetcn",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          }
+        ],
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      },
+      {
+        "code": "US.AAPL",
+        "name": "US.AAPL",
+        "last_price": 308.63,
+        "open_price": 294.12,
+        "high_price": 309.42,
+        "low_price": 293.68,
+        "prev_close_price": 294.38,
+        "pe_ratio": 41.371,
+        "pb_ratio": 42.563,
+        "volume": 75400626,
+        "turnover": 23106283637.0,
+        "momentum": 4.93,
+        "ma_20": null,
+        "news": [
+          {
+            "title": "Ming-Chi Kuo, dubbed 'the analyst who understands Apple best,' stated that the foldable iPhone may be 'announced jointly but delayed in launch, with tight supply before year-end.'",
+            "url": "https://www.moomoo.com/news/post/72484141?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "wallstreetcn",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Apple's Hardware Price Hikes, Elon Musk's SpaceX Denial, Epic Games Vs. Apple and More: This Week In Appleverse",
+            "url": "https://www.moomoo.com/news/post/72479217?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Apple's AI features have failed to spark a wave of device upgrades, with a UBS Group survey showing continued declines in user willingness to upgrade.",
+            "url": "https://www.moomoo.com/news/post/72473589?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "wallstreetcn",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Market Analysis: Apple And Competitors In Technology Hardware, Storage & Peripherals Industry",
+            "url": "https://www.moomoo.com/news/post/72455807?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          },
+          {
+            "title": "Apple Shares Are Trading Higher Following a Report Suggesting That the Company Is Planning an iPhone Launch for the Second Half of the Year and the First Half of 2027, With at Least Five New Models and a Larger Volume of Folding Handsets Than...",
+            "url": "https://www.moomoo.com/news/post/72411848?futusource=news_search_searchnews&src=39",
+            "time": "",
+            "source": "Benzinga",
+            "abstract": "",
+            "summary": "Unable to fetch article (status: 302)"
+          }
+        ],
+        "recommendation": "Sell",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "status": "complete"
+  },
+  "timestamp": "2026-07-06T16:00:02.321786"
+}

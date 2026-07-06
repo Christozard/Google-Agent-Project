@@ -1,0 +1,15 @@
+{
+  "key": "investment_committee.US.JPM.risk",
+  "value": {
+    "status": "risk_evaluated",
+    "security": "US.JPM",
+    "proposed_investment_value": 334.47,
+    "concentration_impact": "High",
+    "diversification_impact": "Potentially Negative (if undiversified sector)",
+    "downside_risks": [],
+    "current_portfolio_health": {
+      "error": "No positions found or total market value is zero."
+    }
+  },
+  "timestamp": "2026-07-04T18:17:26.600579"
+}

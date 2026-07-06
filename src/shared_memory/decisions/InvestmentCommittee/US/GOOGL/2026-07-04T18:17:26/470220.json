@@ -1,0 +1,31 @@
+{
+  "key": "decisions.InvestmentCommittee.US.GOOGL.2026-07-04T18:17:26.470220",
+  "value": {
+    "security": "US.GOOGL",
+    "final_recommendation": "Strong Sell",
+    "confidence_score": 25,
+    "rationale": "High concentration risk identified, reducing enthusiasm.",
+    "detailed_research": {
+      "code": "US.GOOGL",
+      "name": "US.GOOGL",
+      "last_price": 359.91,
+      "pe_ratio": 33.294,
+      "pb_ratio": 9.108,
+      "volume": 25999346,
+      "recommendation": "Hold",
+      "analysis_status": "Complete (Real Market Data)"
+    },
+    "risk_summary": {
+      "status": "risk_evaluated",
+      "security": "US.GOOGL",
+      "proposed_investment_value": 359.91,
+      "concentration_impact": "High",
+      "diversification_impact": "Potentially Negative (if undiversified sector)",
+      "downside_risks": [],
+      "current_portfolio_health": {
+        "error": "No positions found or total market value is zero."
+      }
+    }
+  },
+  "timestamp": "2026-07-04T18:17:26.470340"
+}

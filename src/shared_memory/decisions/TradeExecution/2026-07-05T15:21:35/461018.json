@@ -1,0 +1,13 @@
+{
+  "key": "decisions.TradeExecution.2026-07-05T15:21:35.461018",
+  "value": {
+    "status": "awaiting_user_approval",
+    "order_details": {
+      "code": "US.AAPL",
+      "qty": 10,
+      "price": 180.0,
+      "trd_side": "BUY"
+    }
+  },
+  "timestamp": "2026-07-05T15:21:35.461354"
+}

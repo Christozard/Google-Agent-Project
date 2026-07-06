@@ -1,0 +1,31 @@
+{
+  "key": "decisions.MarketResearch.2026-07-06T12:44:02.221761",
+  "value": {
+    "research_results": [
+      {
+        "code": "US.MSFT",
+        "name": "US.MSFT",
+        "last_price": 390.49,
+        "pe_ratio": 28.628,
+        "pb_ratio": 7.0,
+        "volume": 42194409,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "ranked_recommendations": [
+      {
+        "code": "US.MSFT",
+        "name": "US.MSFT",
+        "last_price": 390.49,
+        "pe_ratio": 28.628,
+        "pb_ratio": 7.0,
+        "volume": 42194409,
+        "recommendation": "Hold",
+        "analysis_status": "Complete (Real Market Data)"
+      }
+    ],
+    "status": "complete"
+  },
+  "timestamp": "2026-07-06T12:44:02.221881"
+}
